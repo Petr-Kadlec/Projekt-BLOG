@@ -6,14 +6,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home </a>
+      <li class="{{ Request::is('/') ?  'active' : '' }}">
+        <a class="nav-link"  href="/">Home </a>
       </li>
-      <li class="nav-item">
+      <li class="{{ Request::is('About') ?  'active' : '' }}">
         <a class="nav-link" href="/About">About</a>
       </li>
       
-      <li class="nav-item">
+      <li class="{{ Request::is('Contact') ?  'active' : '' }}">
         <a class="nav-link " href="/Contact" tabindex="-1" aria-disabled="true">Contact</a>
       </li>
 
