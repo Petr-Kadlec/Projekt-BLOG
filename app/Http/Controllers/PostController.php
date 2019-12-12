@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         // create a varialbe and store all the blog post in it
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         
         
         //return a view and pass a variable to it
@@ -44,14 +44,18 @@ class PostController extends Controller
         //validate data
          $this->validate($request , array(
              "title" => "required|max:255", 
-             "body" => "required"
+             "slug"  => "required|unique:posts,slug|alpha_dash|min:5|max:255|",
+             "body"  => "required"
          ));
 
         //store in the database
         $post = new Post;
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
+       
+        
         
         $post->save();
         Session::flash("success" , "The blog post Was successfully saved !");
@@ -100,7 +104,37 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        //Validate the data
+        if($request->input("slug") == $post->slug){
+            $this->validate($request , array(
+                "title" => "required|max:255", 
+               
+                "body" => "required"
+            ));
+        }else{
+        $this->validate($request , array(
+            "title" => "required|max:255", 
+            "slug"  => "required|unique:posts,slug|alpha_dash|min:5|max:255|",
+            "body" => "required"
+    ));
+    }
+
+        //Save the data to the Database
+        $post = Post::find($id);
+
+
+        $post->title = $request->input("title");
+        $post->body = $request->input("body");
+
+        $post->save();
+
+        //set flash data with success message
+        Session::flash("success", "This post was succesfully updated : - ). ");
+
+        //redirect with flash data to showrequest
+                  return redirect()->route("Posts.show", $post->id);
     }
 
     /**
@@ -112,5 +146,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::find($id);
+        $post->delete();
+        Session::flash("success", "This post was succesfully Deleted : - ). ");
+       
+        return redirect()->route("Posts.index");
+
     }
 }

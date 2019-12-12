@@ -8,32 +8,20 @@
   <p><a class="btn btn-primary btn-lg" href="#" role ="button">Popular Posts</a></p>
 </div>
   </div>
-  <div class="row">
-    <div class="col-md-8">
-    <div class = "post">
-    <h3>Post Title</h3</div>
-    <p>sdgaksdgjskdl jdgklsad jgklsdj klgjksdaasfsafsafasfasfassadsadasdasdsadsadadsad
-    asfasfasfasfassafasfasf</p>
-    <a href="#" class="btn btn-primary">Read More</a>
-    </div> 
+  <div class="row  ">
+    <div class="col-md-8 ">
+
+            @foreach($posts as $post)
+
+
+      <div class = "post " >
+       <h3 class="text-break">{{ $post->title }}</h3>
+       <p class="text-break">{{substr($post->body, 0, 300)}}{{ strlen($post->body) > 300 ? "...": " "}} </p>
+       <br>
+        <a href="{{url('blog', $post->slug)}}" class="btn btn-primary">Read More</a>
+       </div> 
     <hr>
-    <div class = "post">
-    <h3>Post Title</h3</div>
-    <p>sdgaksdgjskdl jdgklsad jgklsdj klgjksda</p>
-    <a href="#" class="btn btn-primary">Read More</a>
-    </div> 
-    <hr>
-    <div class = "post">
-    <h3>Post Title</h3</div>
-    <p>sdgaksdgjskdl jdgklsad jgklsdj klgjksda</p>
-    <a href="#" class="btn btn-primary">Read More</a>
-    </div> 
-    <hr>
-    <div class = "post">
-    <h3>Post Title</h3</div>
-    <p>sdgaksdgjskdl jdgklsad jgklsdj klgjksda</p>
-    <a href="#" class="btn btn-primary">Read More</a>
-    </div> 
+      @endforeach
     </div>
 
     <div class="col-md-3 col-md-offset-1" >
