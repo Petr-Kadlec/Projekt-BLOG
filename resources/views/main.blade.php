@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 @include ("Partials._head")
+@yield("stylesheets")
+
 </head>
 <body>
+
 @include("Partials._nav")
 <div class="container">
 @include("partials._messages")

@@ -1,0 +1,66 @@
+
+body{
+    background-color:white;
+}
+p{
+   text-size-adjust: 12px;
+   margin-left: 5%;
+   color:white;
+}
+h3{
+    color:white;
+    margin-left: 5%;
+}
+h5{
+    color:white;
+    margin-left: 5%;
+    
+}
+.post{
+   margin-top:5%;
+    background-color:#5595bc;
+    height:16%;
+       
+      
+        border-radius: 10px;
+       
+      
+}
+
+ h4:hover{
+    color:rgb(241, 193, 102);
+}
+a:hover {
+    text-decoration: none;
+}
+  
+  .jumbotron{
+      background-color:#5595bc;
+      
+  
+  }
+ .btn{
+    background-color:#5595bc;
+    width:100%;
+    text-align: center;
+    border: 5px solid#5595bc;
+    border-radius: 10px;
+    margin-bottom: 5%;
+
+ 
+}
+.btn-primary{
+ 
+ width:20%;
+ text-align: center;
+ 
+
+}
+    
+  
+ .row{
+       background-color: white;
+       border-radius: 10px;
+
+
+   }

@@ -6,6 +6,8 @@
        <div class="col-md8 col-md-offset-2">
        <h1>{{$post->title}}</h1>
        <p class="text-break">{{$post->body}}</p>
+       <hr>
+       <p>Posted in : {{ $post->category->name }}</p>
        </div>
     
  

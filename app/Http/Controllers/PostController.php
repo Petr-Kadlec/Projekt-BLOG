@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+ use App\Post;
 use Session;
 
 class PostController extends Controller
@@ -17,10 +17,16 @@ class PostController extends Controller
     {
         // create a varialbe and store all the blog post in it
         $posts = Post::orderBy('id', 'desc')->paginate(10);
+       
         
         
         //return a view and pass a variable to it
-        return view("posts.index")->withPosts($posts);    
+        
+        return view("posts.index")->withPosts($posts);
+     
+
+       
+             
     }
 
     /**
@@ -127,6 +133,7 @@ class PostController extends Controller
 
         $post->title = $request->input("title");
         $post->body = $request->input("body");
+        $post->slug = $request->input("slug");
 
         $post->save();
 
