@@ -13,6 +13,12 @@
 <dl class="dl-horizontal">
 <dt>url:</dt>
 <dd><a href="{{ url($post->slug) }}"> {{ Html::link(url('blog' , $post->slug), url('blog' ,$post->slug)) }}</a></dd>
+
+</dl>
+
+<dl class="dl-horizontal">
+ <label>Category:</label>
+ <p>{{ $post->category->name}}</p>
 </dl>
 
 <dt>Created At:</dt>

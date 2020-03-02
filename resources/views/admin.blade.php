@@ -17,7 +17,7 @@
                     You are logged in as ADMIN!
                     <a href="{{ route('Posts.create') }}"><h3 class="text-break">Napsat nový článek</h3></a>
                     <a href="{{url('admin/Posts', )}}"><h3 class="text-break">Všechny Články</h3></a>
-                    <a href="{{route('categories.index')}}"><h3 class="text-break">Všechny Články</h3></a>
+                    <a href="{{route('categories.index')}}"><h3 class="text-break">Kategorie</h3></a>
                   
                     <a href="{{url('/', )}}"><h3 class="text-break">Domovská Stránka</h3></a>
 

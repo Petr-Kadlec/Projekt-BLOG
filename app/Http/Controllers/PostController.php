@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
  use App\Post;
+ use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -36,7 +37,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("posts.create");
+        $categories = Category::all();
+
+        return view("posts.create")->withCategories($categories);
+        
     }
 
     /**
@@ -51,6 +55,7 @@ class PostController extends Controller
          $this->validate($request , array(
              "title" => "required|max:255", 
              "slug"  => "required|unique:posts,slug|alpha_dash|min:5|max:255|",
+             "category_id" =>"required|integer",
              "body"  => "required"
          ));
 
@@ -59,6 +64,7 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
        
         
@@ -94,9 +100,14 @@ class PostController extends Controller
     {
         // find the post in the database and save it as a variable
         $post = Post::find($id);
+        $categories = Category::all();
+        $cats = array();
+        foreach($categories as $category){
+            $cats[$category->id] = $category->name;
+        }
 
         //return view and apass in the var
-        return view('Posts.edit')->withPost($post);
+        return view('Posts.edit')->withPost($post)->withCategories($cats);
 
 
     }
@@ -116,13 +127,14 @@ class PostController extends Controller
         if($request->input("slug") == $post->slug){
             $this->validate($request , array(
                 "title" => "required|max:255", 
-               
+                "category_id" => "required|integer",
                 "body" => "required"
             ));
         }else{
         $this->validate($request , array(
             "title" => "required|max:255", 
             "slug"  => "required|unique:posts,slug|alpha_dash|min:5|max:255|",
+            "category_id" => "required|integer",
             "body" => "required"
     ));
     }
@@ -133,6 +145,7 @@ class PostController extends Controller
 
         $post->title = $request->input("title");
         $post->body = $request->input("body");
+        $post->category_id = $request->input("category_id");
         $post->slug = $request->input("slug");
 
         $post->save();
