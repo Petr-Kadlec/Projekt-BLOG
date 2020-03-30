@@ -33,6 +33,7 @@ Route::prefix("admin")->group(function(){
     Route::post("/login" , "Auth\AdminLoginController@login")->name("admin.login.submit");
     Route::resource('Posts',"PostController")->middleware('auth:admin');
     Route::resource('categories',"CategoryController");
+    Route::resource('tags',"TagController");
 
 
    

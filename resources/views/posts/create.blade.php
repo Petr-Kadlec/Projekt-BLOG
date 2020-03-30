@@ -1,5 +1,12 @@
 @extends("main")
+
 @section("title" , "| Create New Post")
+@section("stylesheets")
+{!! Html::style("css/select2.min.css") !!}
+@endsection
+
+@section("content")
+
 
 
 
@@ -26,6 +33,17 @@
                 <option value ="{{$category->id}}">{{$category->name }}</option>
                 @endforeach
        </select>
+
+      </div>
+      <div class="form-group">
+        
+        <label name="tags">Tags:</label>
+       <select class = "form-control  select2-multi" name = "tags[]" multiple = "multiple">
+                @foreach($tags as $tag)
+                <option value ="{{$tag->id}}">{{$tag->name }}</option>
+                @endforeach
+       </select>
+       
       </div>
       
 
@@ -40,4 +58,17 @@
 </div>
      </div>
    </div>
+
 @endsection
+@section("scripts")
+   {!! Html::script("js/select2.min.js") !!}
+   
+   
+   <script type = "text/javascript">
+$(".select2-multi").select2();
+</script>
+@endsection
+
+
+
+

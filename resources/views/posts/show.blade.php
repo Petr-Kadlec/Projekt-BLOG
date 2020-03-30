@@ -6,6 +6,14 @@
 <div class="col-md-8  ">
 <h1 class="text-break">{{ $post->title  }}</h1>
 <p class="lead text-break ">{{ $post->body  }}</p>
+
+<hr>
+<div class = "tags">
+
+@foreach($post->tags as $tag)
+<span class="badge badge-primary" name =>{{ $tag->name }}  </span> 
+@endforeach
+</div>
 </div>
 
  <div class="col-md-4">
