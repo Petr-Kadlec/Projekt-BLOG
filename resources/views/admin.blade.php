@@ -1,11 +1,11 @@
-@extends('layouts.app')
-
-@section('content')
+@extends("main")
+@section("title", "|Admin Dashboard")
+@section("content")
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-10">
             <div class="card">
-                <div class="card-header">ADMIN Dashboard</div>
+                <div class="card-header"><h1>ADMIN Dashboard</h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,15 +14,15 @@
                         </div>
                     @endif
 
-                    You are logged in as ADMIN!
-                    <a href="{{ route('Posts.create') }}"><h3 class="text-break">Napsat nový článek</h3></a>
-                    <a href="{{url('admin/Posts', )}}"><h3 class="text-break">Všechny Články</h3></a>
-                    <a href="{{route('categories.index')}}"><h3 class="text-break">Kategorie</h3></a>
+                   <small> You are logged in as ADMIN!</small>
+                    <ul class="list-group">
+  <li class="list-group-item"><a href="{{ route('Posts.create') }}"><h3 class="text-break">Write new post</h3></a></li>
+  <li class="list-group-item"><a href="{{url('admin/Posts', )}}"><h3 class="text-break">All posts</h3></a></li>
+  <li class="list-group-item"> <a href="{{route('categories.index')}}"><h3 class="text-break">Categories</h3></a></li>
+  <li class="list-group-item"><a href="{{route('tags.index')}}"><h3 class="text-break">Tags</h3></a></li>
+  <li class="list-group-item"> <a href="{{url('/', )}}"><h3 class="text-break">Home page</h3></a></li>
+</ul>
                   
-                    <a href="{{url('/', )}}"><h3 class="text-break">Domovská Stránka</h3></a>
-
-
-
                 </div>
             </div>
         </div>

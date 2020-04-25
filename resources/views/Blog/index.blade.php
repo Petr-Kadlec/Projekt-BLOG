@@ -13,7 +13,7 @@
     <div class="col-md-8-offset-2">
     <h2 class="text-break">{{ $post->title}}</h2>
    
-    <p class="text-break">{{substr($post->body, 0, 300)}}{{ strlen($post->body) > 300 ? "...": " "}}</p>
+    <p class="text-break">{!!substr($post->body, 0, 300)!!}{!! strlen($post->body) > 300 ? "...": " "!!}</p>
     <h5 class="text-break">Published: {{date("j M Y" , strtotime($post->created_at))}}</h5>
 
     <a href = "{{url('blog', $post->slug)}}"  class=" btn btn-primary">Read More</a>

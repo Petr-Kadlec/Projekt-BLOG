@@ -3,13 +3,16 @@
 @section('title', '| Edit Blog Post')
 @section("stylesheets")
 {!! Html::style("css/select2.min.css")!!}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({selector:'textarea'});</script>
+</script>
 @endsection
 
 @section('content')
  
 <div class="row">
 <div class="form-group">
-		{!! Form::model($post, ['route' => ['Posts.update', $post->id], 'method' => 'PUT']) !!}</div>
+		{!! Form::model($post, ['route' => ['Posts.update', $post->id], 'method' => 'PUT', 'files'=> true]) !!}</div>
 		<div class="col-md-8">
         <div class="form-group">
 		{{ Form::label('title', 'Title:') }}
@@ -25,6 +28,9 @@
 
 		 {{ Form::label('tags', 'Tags:' , ["class" => 'form-spacing-top']) }}
 		 {{ Form::select('tags[]' , $tags, null, ["class" => ' form-control select2-multi ' ,'multiple' => 'multiple' ]) }}
+
+		 {{Form::label('featured_image', 'Update Featured Image:')}}
+		 {{Form::file('featured_image')}}
 		
 		 <br>
         {{ Form::label('body', "Body:", ['class' => 'form-spacing-top']) }}

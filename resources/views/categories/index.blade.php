@@ -18,7 +18,7 @@
        <tr>
        
         <th>{{ $category->id }}</th>
-        <td>{{ $category->name }}</td>
+        <td><a href="{{ route('categories.show', $category->id)}}">{{ $category->name }}</a></td>
        </tr>
 
        @endforeach

@@ -1,5 +1,5 @@
 <?php
-
+use App\Comment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('blog/{slug}',  ['as' => 'Blog.single' , 'uses' => 'BlogController@getSingle']);
+Route::get('blog/{slug}',  ['as' => 'Blog.single' , 'uses' => 'BlogController@getSingle'] , function(){
+    $comment=Comment::where('approved','1')->get();
+    return view('blog/{slug}')->withComments('comments',$comment);
+});
 Route::get('Contact', 'PagesController@getContact');
 Route::get('About','PagesController@getAbout')->name("about");  
 Route::get('/','PagesController@getIndex')->name('home');
@@ -34,6 +37,14 @@ Route::prefix("admin")->group(function(){
     Route::resource('Posts',"PostController")->middleware('auth:admin');
     Route::resource('categories',"CategoryController");
     Route::resource('tags',"TagController");
+    Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
+    Route::get('comments/{id}/edit' , ['uses' => 'CommentsController@edit' , 'as' => 'comments.edit']);
+    Route::put('comments/{id}/update' , ['uses' => 'CommentsController@update' , 'as' => 'comments.update']);
+    Route::put('comments/{id}' , ['uses' => 'CommentsController@approved' , 'as' => 'comments.approved']);
+ 
+    Route::delete('comments/{id}/delete' , ['uses' => 'CommentsController@destroy' , 'as' => 'comments.destroy']);
+
+	Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
 
 
    
